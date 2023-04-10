@@ -2,9 +2,15 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
 }
 .center-loading{
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.center-text{
+    text-align: center;
+
 }
