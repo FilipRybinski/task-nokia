@@ -1,34 +1,4 @@
 <div class="container-fluid">
-    <ng-container *ngIf="summary$ |async as summary; else loading">
-        <div class="main-container">
-            <div class="center-text">
-                <h4>{{summary.Global.NewConfirmed}}</h4>
-                <p>New Confirmed</p>
-            </div>
-            <div class="center-text">
-                <h4>{{summary.Global.NewConfirmed}}</h4>
-                <p>Total Confirmed</p>
-            </div>
-            <div class="center-text">
-                <h4>{{summary.Global.NewDeaths}}</h4>
-                <p>New Deaths</p>
-            </div>
-            <div class="center-text">
-                <h4>{{summary.Global.TotalDeaths}}</h4>
-                <p>Total Deaths</p>
-            </div>
-            <div class="center-text">
-                <h4>{{summary.Global.NewRecovered}}</h4>
-                <p>New Recovered</p>
-            </div>
-            <div class="center-text">
-                <h4>{{summary.Global.TotalRecovered}}</h4>
-                <p>Total Recovered</p>
-            </div>
-        </div>
-    </ng-container>
+    <app-navbar></app-navbar>
     <router-outlet></router-outlet>
 </div>
-<ng-template #loading>
-    <app-loading-notifier class="center-loading"></app-loading-notifier>
-</ng-template>

@@ -12,6 +12,9 @@ import { CounterComponent } from './cases/counter/counter.component';
 import { CasesComponent } from './cases/cases.component';
 import { LackValuePipe } from './shared/pipes/lack-value.pipe';
 import { FormComponent } from './cases/form/form.component';
+import { SummaryComponent } from './summary/summary.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ChartComponent } from './summary/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { FormComponent } from './cases/form/form.component';
     CounterComponent,
     CasesComponent,
     LackValuePipe,
-    FormComponent
+    FormComponent,
+    SummaryComponent,
+    NavbarComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,

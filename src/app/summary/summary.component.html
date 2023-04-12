@@ -1,0 +1,7 @@
+<ng-container *ngIf="summary$ |async as summary; else loading">
+        <app-chart [dataForChart]="summary.Countries"></app-chart>
+
+</ng-container>
+<ng-template #loading>
+    <app-loading-notifier class="center-loading"></app-loading-notifier>
+</ng-template>
