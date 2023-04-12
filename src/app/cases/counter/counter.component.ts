@@ -9,9 +9,10 @@ export class CounterComponent {
   startValue:number=0;
   @Input() endValue!:number;
   countStop=setInterval(()=>{
-    this.startValue++;
     if(this.startValue==this.endValue){
       clearInterval(this.countStop);
+      return;
     }
+    this.startValue++;
   },10);
 }

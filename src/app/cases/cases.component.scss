@@ -2,5 +2,159 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
+.form-select, .form-control, .form-check-input{
+  border-radius: 20px;
+}
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.my-pagination ::ng-deep ul.ngx-pagination.responsive{
+  padding-left: 0;
+}
+.my-pagination ::ng-deep .ngx-pagination .current {
+  border-radius: 15px;
+  background-color: #0d6efd;
+}
+.check{
+  display: none;
+}
+.menu_btn{
+  position: relative;
+  top: 10px;
+  left: 95%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+.menu_btn span{
+  display: block;
+  height: 5px;
+  width: 100%;
+  background-color: black;
+  border-radius: 15px;
+}
+.drop_down_menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  opacity: 0;
+  z-index: -1;
+  padding: 0 10px 0 10px;
+}
+.check:checked~.menu_btn span:nth-child(3){
+  display: none;
+}
+.check:checked~.menu_btn span{
+  position: absolute;
+  top: 10px;
+}
+.check:checked~.menu_btn span:nth-child(1){
+  transform: rotate(45deg);
+}
+.check:checked~.menu_btn span:nth-child(2){
+  transform: rotate(-45deg);
+}
+@media screen and (max-width: 600px) {
+    .menu{
+      display: none;
+    }
+    .menu_btn{
+      display: flex;
+    }
+    .check:checked~.drop_down_menu{
+      z-index: 1;
+      animation: SLIDEINFROMRIGHT 0.5s   1 both;
+    }
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+  @keyframes SLIDEINFROMRIGHT {
+    from{
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+    
+  }
