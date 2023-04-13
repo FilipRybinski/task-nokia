@@ -8,14 +8,10 @@ Chart.register(...registerables);
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit{
-  @Input() dataForChart!:Country[];
+  @Input() dataForChart!:Country;
   ngOnInit(): void {
-    var global={};
-    this.dataForChart.map((obj)=>{
-       Object.assign(global,{[obj.Country] : obj.TotalDeaths})
-    })
-    var labels:string[]=Object.keys(global);
-    var data:number[]=Object.values(global);
+    var labels:string[]=Object.keys(this.dataForChart).slice(4,9);
+    var data:number[]=Object.values(this.dataForChart).slice(4,9);
     this.RenderChart(labels,data);
   }
   RenderChart(lables:string[],data:number[]){
@@ -24,23 +20,17 @@ export class ChartComponent implements OnInit{
       data: {
         labels: lables,
         datasets: [{
-          label: 'Total Deaths',
+          label: 'Value',
           data: data,
           backgroundColor:'rgba(255, 99, 132, 0.2)',
         }]
       },
       options: {
         scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Country'
-            }
-          },
           y: {
             title: {
               display: true,
-              text: 'Amount'
+              text: 'Values'
             },
           }
         }

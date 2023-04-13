@@ -12,47 +12,47 @@
         <div class="menu">
             <app-form [countires]="countires" (newData)="assignData($event)"></app-form>
         </div>
-    </ng-container> 
-    <ng-container *ngIf="data$ |async as data; else loading">
-        <div class="content">
-            <div class="d-flex justify-content-between align-items-center mt-2 flex-wrap">
-                <div class="d-flex align-items-center">
-                    <label class="pe-2">Set size of table:</label>
-                    <select style="width: 75px;" class="form-select" [(ngModel)]="_pageSize">
-                        <option *ngFor="let number of itemsPerPageArray" value="{{number}}">{{number}}</option>
-                    </select>
+        <ng-container *ngIf="data$ |async as data; else loading">
+            <div class="content">
+                <div class="d-flex justify-content-between align-items-center mt-2 flex-wrap">
+                    <div class="d-flex align-items-center">
+                        <label class="pe-2">Set size of table:</label>
+                        <select style="width: 75px;" class="form-select" [(ngModel)]="_pageSize">
+                            <option *ngFor="let number of itemsPerPageArray" value="{{number}}">{{number}}</option>
+                        </select>
+                    </div>
+                    <p style="font-weight: bold; text-align: center; margin: 0;" class="pe-3">Results: <app-counter [endValue]="data.length"></app-counter></p>
                 </div>
-                <p style="font-weight: bold; text-align: center; margin: 0;" class="pe-3">Results: <app-counter [endValue]="data.length"></app-counter></p>
+                <table  class=" mt-2">
+                    <thead>
+                        <tr>
+                            <th (click)="sort('Country')">Country&nbsp;<i class="fa fa-sort"></i></th>
+                            <th (click)="sort('CountryCode')">Country Code&nbsp;<i class="fa fa-sort"></i></th>
+                            <th >Lat</th>
+                            <th>Lon</th>
+                            <th (click)="sort('Cases')">Cases&nbsp;<i class="fa fa-sort"></i></th>
+                            <th>Status</th>
+                            <th (click)="sort('Date')">Date&nbsp;<i class="fa fa-sort"></i></th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let object of data | paginate : {itemsPerPage:pageSize,currentPage: page} | orderBy: key:reverse">
+                            <td data-label="Country"><img style="padding-right: 5px; border-radius: 20px;" src="https://flagsapi.com/{{object.CountryCode}}/flat/32.png"> {{object.Country | lackValue}}</td>
+                            <td data-label="Country Code">{{object.CountryCode | lackValue}}</td>
+                            <td data-label="Lat">{{object.Lat | lackValue}}</td>
+                            <td data-label="Lon">{{object.Lon | lackValue}}</td>
+                            <td data-label="Cases">{{object.Cases | lackValue}}</td>
+                            <td data-label="Status">{{object.Status | lackValue}}</td>
+                            <td data-label="Date">{{object.Date | date:'shortDate'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-container *ngIf="data.length>0">
+                    <pagination-controls   [responsive]='true' class="center-loading my-pagination mt-2" (pageChange)="page=$event"></pagination-controls>
+                </ng-container>
             </div>
-            <table  class=" mt-2">
-                <thead>
-                    <tr>
-                        <th>Country</th>
-                        <th>Country Code</th>
-                        <th>Lat</th>
-                        <th>Lon</th>
-                        <th>Cases</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                    </tr>    
-                </thead>
-                <tbody>
-                    <tr *ngFor="let object of data | paginate : {itemsPerPage:pageSize,currentPage: page}">
-                        <td data-label="Country">{{object.Country | lackValue}}</td>
-                        <td data-label="Country Code">{{object.CountryCode | lackValue}}</td>
-                        <td data-label="Lat">{{object.Lat | lackValue}}</td>
-                        <td data-label="Lon">{{object.Lon | lackValue}}</td>
-                        <td data-label="Cases">{{object.Cases | lackValue}}</td>
-                        <td data-label="Status">{{object.Status | lackValue}}</td>
-                        <td data-label="Date">{{object.Date | date:'shortDate'}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <ng-container *ngIf="data.length>0">
-                <pagination-controls   [responsive]='true' class="center-loading my-pagination mt-2" (pageChange)="page=$event"></pagination-controls>
-            </ng-container>
-        </div>
-    </ng-container>
+        </ng-container>
+    </ng-container> 
 </div>
 
 

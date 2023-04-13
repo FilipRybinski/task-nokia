@@ -1,7 +1,66 @@
-<ng-container *ngIf="summary$ |async as summary; else loading">
-        <app-chart [dataForChart]="summary.Countries"></app-chart>
-
+<ng-container *ngIf="filteredCountry$ |async as countries; else loading">
+        <div class="d-flex align-items-center mb-2">
+            <label class="pe-2">Finder</label>
+            <input type="text" class="form-control" [formControl]="filter" placeholder="Filter country...">
+        </div>
+        <div class="d-flex align-items-center">
+            <label class="pe-2">Set size of table:</label>
+            <select style="width: 75px;" class="form-select" [(ngModel)]="_pageSize">
+                <option *ngFor="let number of itemsPerPageArray" value="{{number}}">{{number}}</option>
+            </select>
+        </div>
+        <table  class=" mt-2">
+            <thead>
+                <tr>
+                    <th (click)="sort('Country')">Country&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('CountryCode')">Country Code&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('NewConfirmed')">New Confirmed&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('TotalConfirmed')">Total Confirmed&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('NewDeaths')">New Deaths&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('TotalDeaths')">Total Deaths&nbsp;<i class="fa fa-sort"></i></th>
+                    <th>Date</th>
+                    <th>View</th>
+                </tr>    
+            </thead>
+            <tbody>
+                <tr *ngFor="let object of countries | paginate : {itemsPerPage:pageSize,currentPage: page} | orderBy: key:reverse">
+                    <td data-label="Country"><img style="padding-right: 5px; border-radius: 20px;" src="https://flagsapi.com/{{object.CountryCode}}/flat/32.png">{{object.Country | lackValue}}</td>
+                    <td data-label="Country Code">{{object.CountryCode | lackValue}}</td>
+                    <td data-label="New Confirmed">{{object.NewConfirmed | lackValue}}</td>
+                    <td data-label="Total Confirmed">{{object.TotalConfirmed | lackValue}}</td>
+                    <td data-label="New Deaths">{{object.NewDeaths | lackValue}}</td>
+                    <td data-label="Total Deaths">{{object.TotalDeaths | lackValue}}</td>
+                    <td data-label="Date">{{object.Date | date:'shortDate'}}</td>
+                    <td data-label="View"><button class="btn btn-primary" (click)="openPopup(object)">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-container *ngIf="countries.length>0">
+            <pagination-controls   [responsive]='true' class="center-loading my-pagination mt-2" (pageChange)="page=$event"></pagination-controls>
+        </ng-container>
 </ng-container>
 <ng-template #loading>
     <app-loading-notifier class="center-loading"></app-loading-notifier>
 </ng-template>
+<div
+    id="modal"
+  class="modal "
+  tabindex="100"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content p-3">
+        <ng-container *ngIf="chartCountry else loading" class="mb-2">
+            <div *ngFor="let o of [chartCountry]">
+                <app-chart [dataForChart]="chartCountry" ></app-chart>
+            </div>
+        </ng-container>
+      <div class="modal-footer mt-1">
+        <button type="button" class="btn btn-danger" 
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

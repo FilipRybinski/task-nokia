@@ -18,7 +18,7 @@ export class FormComponent {
   api=inject(ApiService);
   formBuilder=inject(FormBuilder);
   form!:FormGroup;
-  statusArray=['recovered','deaths','confirmed'];
+  statusArray:string[]=['recovered','deaths','confirmed'];
   date: string = new Date().toISOString().split("T")[0];
   ngOnInit(): void {
     this.form=this.formBuilder.group({
