@@ -7,7 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoadingNotifierComponent } from './loading-notifier/loading-notifier.component';
+import { LoadingNotifierComponent } from './shared/notifications/loading-notifier/loading-notifier.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CounterComponent } from './cases/counter/counter.component';
 import { CasesComponent } from './cases/cases.component';
@@ -27,7 +27,7 @@ import { ChartComponent } from './summary/chart/chart.component';
     FormComponent,
     SummaryComponent,
     NavbarComponent,
-    ChartComponent
+    ChartComponent,
   ],
   imports: [
     BrowserModule,

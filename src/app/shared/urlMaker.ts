@@ -7,6 +7,5 @@ export function makeUrl(form:FormGroup){
     if(form.value.status) baseUrl+=`/status/${form.value.status}`;
     if(form.value.live) baseUrl+=`/live`;
     if(form.value.from && form.value.to)baseUrl+=`?from=${new Date(form.value.from).toISOString()}&to=${new Date(form.value.to).toISOString()}`;
-    console.log(baseUrl);
     return baseUrl;
 }

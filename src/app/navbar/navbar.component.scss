@@ -28,3 +28,8 @@
     color: black;
     font-weight: bold;
 }
+@media screen and (max-width:300px) {
+    .inline_menu{
+        font-size: 0.8rem;
+    }
+}

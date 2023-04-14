@@ -37,11 +37,11 @@ export class SummaryComponent implements OnInit{
     this.pageSize=value;
     this.page=1;
   }
-  sort(key:string){
+  sort(key:string):void{
     this.key=key;
     this.reverse=!this.reverse;
   }
-  open(content:any,object:Country) {
+  open(content:any,object:Country):void {
     this.chartCountry=object;
     this.modalService.open(content,{ centered: true});
   }

@@ -14,7 +14,7 @@ export class ChartComponent implements OnInit{
     var data:number[]=Object.values(this.dataForChart).slice(4,9);
     this.RenderChart(labels,data);
   }
-  RenderChart(lables:string[],data:number[]){
+  RenderChart(lables:string[],data:number[]):void{
     new Chart('chart', {
       type: 'pie',
       data: {

@@ -12,17 +12,18 @@ const retryValue={count:2, delay: 4000};
   styleUrls: ['./cases.component.scss']
 })
 export class CasesComponent implements OnInit{
-  api=inject(ApiService);
-  formBuilder=inject(FormBuilder);
-  countries$:Observable<CountryId[]>=this.api.getCountries().pipe(retry(retryValue));
-  data$:Observable<Cases[]>=this.api.getDayOne('https://api.covid19api.com/dayone/country/south-africa/status/confirmed').pipe(retry(retryValue));
+  api:ApiService=inject(ApiService);
+  formBuilder:FormBuilder=inject(FormBuilder);
+  countries$!:Observable<CountryId[]>
+  data$!:Observable<Cases[]>
   page:number=1;
   pageSize:number=5;
   itemsPerPageArray:number[]=[5,10,15,20];
   key:string='';
   reverse:boolean=false;
   ngOnInit(): void {
-
+    this.countries$=this.api.getCountries().pipe(retry(retryValue));
+    this.data$=this.api.getDataByUrl('https://api.covid19api.com/dayone/country/south-africa/status/confirmed').pipe(retry(retryValue));
   }
   get _pageSize(){
     return this.pageSize;
@@ -31,10 +32,10 @@ export class CasesComponent implements OnInit{
     this.pageSize=value;
     this.page=1;
   }
-  assignData(data:Observable<Cases[]>){
+  assignData(data:Observable<Cases[]>):void{
     this.data$=data;
   }
-  sort(key:string){
+  sort(key:string):void{
     this.key=key;
     this.reverse=!this.reverse;
   }

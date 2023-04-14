@@ -15,7 +15,7 @@ export class ApiService {
   getSummary(){
     return this.http.get<Summary>(`https://api.covid19api.com/summary`);
   }
-  getDayOne(url:string){
+  getDataByUrl(url:string){
 
     return this.http.get<Cases[]>(url);
   }

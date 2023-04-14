@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/shared/api.service';
 import { Cases } from 'src/app/shared/models/case.model';
 import { CountryId } from 'src/app/shared/models/countryId.model';
 import { makeUrl } from 'src/app/shared/urlMaker';
+
 const retryValue={count:2, delay: 4000};
 
 @Component({
@@ -15,8 +16,8 @@ const retryValue={count:2, delay: 4000};
 export class FormComponent {
   @Input() countires!:CountryId[];
   @Output() newData = new EventEmitter<Observable<Cases[]>>();
-  api=inject(ApiService);
-  formBuilder=inject(FormBuilder);
+  api:ApiService=inject(ApiService);
+  formBuilder:FormBuilder=inject(FormBuilder);
   form!:FormGroup;
   statusArray:string[]=['recovered','deaths','confirmed'];
   date: string = new Date().toISOString().split("T")[0];
@@ -35,7 +36,7 @@ export class FormComponent {
     if(!this.form.valid){
       return;
     }
-    this.newData.emit(this.api.getDayOne(makeUrl(this.form)).pipe(retry(retryValue)))
+    this.newData.emit(this.api.getDataByUrl(makeUrl(this.form)).pipe(retry(retryValue)))
     var button=document.getElementById('check') as HTMLInputElement ;
     if(button !=null) button.checked=false;
     formHTML.resetForm();
