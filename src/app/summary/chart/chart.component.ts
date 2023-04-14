@@ -16,27 +16,19 @@ export class ChartComponent implements OnInit{
   }
   RenderChart(lables:string[],data:number[]){
     new Chart('chart', {
-      type: 'line',
+      type: 'pie',
       data: {
         labels: lables,
         datasets: [{
           label: 'Value',
           data: data,
-          backgroundColor:'rgba(255, 99, 132, 0.2)',
+          backgroundColor:[
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'],
         }]
       },
-      options: {
-        scales: {
-          y: {
-            title: {
-              display: true,
-              text: 'Values'
-            },
-          }
-        }
-      },
     });
-
   }
 
 }

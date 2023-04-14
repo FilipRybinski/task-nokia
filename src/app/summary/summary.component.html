@@ -1,3 +1,4 @@
+
 <ng-container *ngIf="filteredCountry$ |async as countries; else loading">
         <div class="d-flex align-items-center mb-2">
             <label class="pe-2">Finder</label>
@@ -31,7 +32,7 @@
                     <td data-label="New Deaths">{{object.NewDeaths | lackValue}}</td>
                     <td data-label="Total Deaths">{{object.TotalDeaths | lackValue}}</td>
                     <td data-label="Date">{{object.Date | date:'shortDate'}}</td>
-                    <td data-label="View"><button class="btn btn-primary" (click)="openPopup(object)">View</button></td>
+                    <td data-label="View"><button class="btn btn-primary" (click)="open(mymodal,object)">View</button></td>
                 </tr>
             </tbody>
         </table>
@@ -42,25 +43,18 @@
 <ng-template #loading>
     <app-loading-notifier class="center-loading"></app-loading-notifier>
 </ng-template>
-<div
-    id="modal"
-  class="modal "
-  tabindex="100"
-  role="dialog"
-  [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content p-3">
-        <ng-container *ngIf="chartCountry else loading" class="mb-2">
-            <div *ngFor="let o of [chartCountry]">
-                <app-chart [dataForChart]="chartCountry" ></app-chart>
+
+<ng-template #mymodal let-modal class="d-flex justify-content-center align-items-center">
+    <div class="text-center pt-4">
+        <h4 class="" id="modal">Chart {{chartCountry.Country}}</h4>
+        </div>
+            <div class="modal-body">
+                <ng-container>
+                    <div *ngFor="let object of [chartCountry]">
+                        <app-chart [dataForChart]="object"></app-chart>
+                    </div>
+                </ng-container>
             </div>
-        </ng-container>
-      <div class="modal-footer mt-1">
-        <button type="button" class="btn btn-danger" 
-                (click)="closePopup()">
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+        <button type="button" class="btn btn-primary" (click)="modal.close()">Close</button>
+</ng-template>
+
