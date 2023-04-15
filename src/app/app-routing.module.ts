@@ -5,13 +5,13 @@ import { CasesComponent } from './cases/cases.component';
 import { SummaryComponent } from './summary/summary.component';
 
 const routes: Routes = [
-  {redirectTo:'cases',path:'',pathMatch:'full'},
-  {path:'cases',component:CasesComponent},
-  {path:'summary',component:SummaryComponent}
+  { redirectTo: 'cases', path: '', pathMatch: 'full' },
+  { path: 'cases', component: CasesComponent },
+  { path: 'summary', component: SummaryComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

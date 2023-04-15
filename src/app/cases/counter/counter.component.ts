@@ -3,16 +3,19 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',
-  styleUrls: ['./counter.component.scss']
+  styleUrls: ['./counter.component.scss'],
 })
+// Component to animate a loading cases
 export class CounterComponent {
-  startValue:number=0;
-  @Input() endValue!:number;
-  countStop=setInterval(()=>{
-    if(this.startValue==this.endValue){
+  @Input() endValue!: number;
+  // Variables
+  startValue: number = 0;
+
+  countStop = setInterval(() => {
+    if (this.startValue == this.endValue) {
       clearInterval(this.countStop);
       return;
     }
     this.startValue++;
-  },10);
+  }, 10);
 }

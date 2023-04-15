@@ -1,89 +1,88 @@
-@import '/src/styles.scss';
-.my-pagination ::ng-deep ul.ngx-pagination.responsive{
-    padding-left: 0;
-  }
-  .my-pagination ::ng-deep .ngx-pagination .current {
-    border-radius: 15px;
-    background-color: #0b5ed7;
-  }
-  .my-pagination ::ng-deep .ngx-pagination a:hover{
-    background-color: #0d6efd;
-    color: white;
-    border-radius: 15px;
-  }
-  .check{
-    display: none;
-  }
-  .menu_btn{
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    z-index: 10;
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .menu_btn span{
-    display: block;
-    height: 5px;
-    width: 100%;
-    background-color: black;
-    border-radius: 15px;
-  }
-  .drop_down_menu{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    opacity: 0;
-    z-index: -1;
-    padding: 0 10px 0 10px;
-  }
-  .check:checked~.menu_btn span:nth-child(3){
-    display: none;
-  }
-  .check:checked~.menu_btn span{
-    position: absolute;
-    top: 10px;
-  }
-  .check:checked~.menu_btn span:nth-child(1){
-    transform: rotate(45deg);
-  }
-  .check:checked~.menu_btn span:nth-child(2){
-    transform: rotate(-45deg);
-  }
+@import "/src/styles.scss";
+.my-pagination ::ng-deep ul.ngx-pagination.responsive {
+  padding-left: 0;
+}
+.my-pagination ::ng-deep .ngx-pagination .current {
+  border-radius: 15px;
+  background-color: #0b5ed7;
+}
+.my-pagination ::ng-deep .ngx-pagination a:hover {
+  background-color: #0d6efd;
+  color: white;
+  border-radius: 15px;
+}
+.check {
+  display: none;
+}
+.menu_btn {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+.menu_btn span {
+  display: block;
+  height: 5px;
+  width: 100%;
+  background-color: black;
+  border-radius: 15px;
+}
+.drop_down_menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  opacity: 0;
+  z-index: -1;
+  padding: 0 10px 0 10px;
+}
+.check:checked ~ .menu_btn span:nth-child(3) {
+  display: none;
+}
+.check:checked ~ .menu_btn span {
+  position: absolute;
+  top: 10px;
+}
+.check:checked ~ .menu_btn span:nth-child(1) {
+  transform: rotate(45deg);
+}
+.check:checked ~ .menu_btn span:nth-child(2) {
+  transform: rotate(-45deg);
+}
 @media screen and (max-width: 600px) {
-    .check:checked~.content{
-      display: none;
-    }
-    .menu{
-      display: none;
-    }
-    .menu_btn{
-      display: flex;
-    }
-    .check:checked~.drop_down_menu{
+  .check:checked ~ .content {
+    display: none;
+  }
+  .menu {
+    display: none;
+  }
+  .menu_btn {
+    display: flex;
+  }
+  .check:checked ~ .drop_down_menu {
     z-index: 1;
-    animation: SLIDEINFROMRIGHT 0.5s   1 both;
-    }
+    animation: SLIDEINFROMRIGHT 0.5s 1 both;
+  }
 }
 @keyframes SLIDEINFROMRIGHT {
-    from{
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    to{
-        transform: translateX(0);
-        opacity: 1;
-    }
-    
+  from {
+    opacity: 0;
+    transform: translateX(100%);
   }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

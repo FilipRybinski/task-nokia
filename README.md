@@ -1,27 +1,13 @@
 # TaskNokia
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+This project was generated with [Angular CLI] in version 15.2.4.
 
-## Development server
+## About application
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The application provides users with the ability to search for COVID-19 data, which covers cases from the first day of the pandemic up to the present day. The data is presented in both tables and graphs for each country. The information for this application is sourced from https://covid19api.com/, as mentioned in the task content. Additionally, to enhance the user experience, the application fetches flag images for each country from https://flagsapi.com/ and presents them in the table. The application is fully responsive and reliable, taking into account that the COVID-19 API has limitations for data retrieval. If the application fails to retrieve data from the API, it will automatically retry after a delay of 4 seconds 2 tmes.
 
-## Code scaffolding
+## Code
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+I wrote the code in the cleanest way possible to make it easier to assess this task. To avoid memory leaks, I have used async pipes wherever possible. Also all code was commented.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Enjoy
